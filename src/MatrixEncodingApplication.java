@@ -12,7 +12,9 @@ public class MatrixEncodingApplication extends JFrame{
         setLayout(new FlowLayout());
 
         Controller controller = new Controller();
-        add(controller.getPanel());
+        // add(controller.getPanel());
+        // TODO remove (debug)
+        add(new GamePanel());
 
         MouseListener mouseListener = new ClickListener(this, controller);
         addMouseListener(mouseListener);
@@ -22,7 +24,7 @@ public class MatrixEncodingApplication extends JFrame{
         setSize(Constants.VIEW_WIDTH+22, Constants.VIEW_HEIGHT+22);
         setVisible(true);
 
-        controller.start();
+        // controller.start();
     }
 
     public static void main(String[] args) {
