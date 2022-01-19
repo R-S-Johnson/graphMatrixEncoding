@@ -14,12 +14,29 @@ public class ClickListener implements MouseListener {
     }
 
 
+    /**
+     * When the mouse is clicked, we need to
+     * determine whether we were in the
+     * boundaries of a circle. If yes, then
+     * dragging the mouse can draw the line
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
-        // TODO remove (testing)
-        System.out.println("mouseClicked called");        
+        int x = e.getX();
+        int y = e.getY();
+        int[] toReturn = {x, y};
+        controller.mousePress(toReturn, MousePressOptions.Click);
     }
 
+
+
+    /**
+     * When the mouse is released, we need to
+     * determine whether the mouse is in the
+     * boundaries of a circle. If yes, then add
+     * a connection between the clicked and 
+     * released circle
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         // TODO Auto-generated method stub

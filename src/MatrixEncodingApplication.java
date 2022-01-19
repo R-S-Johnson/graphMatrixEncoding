@@ -1,35 +1,54 @@
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.FlowLayout;
+import javax.swing.JFrame;
+import java.awt.Graphics;
+import java.awt.Color;
 
 
-public class MatrixEncodingApplication extends JFrame{
+public class MatrixEncodingApplication extends JPanel{
+
+    Boolean pressed;
     
-    MatrixEncodingApplication() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    public void paint(Graphics g) {
+        // draw circles
+        drawCircles(g);
+    }
 
-        setLayout(new FlowLayout());
+    private void drawCircles(Graphics g) {
+        g.setColor(Color.CYAN);
+        g.fillOval(400, 150, 25, 25);
+        g.fillOval(150, 350, 25, 25);
+        g.fillOval(650, 350, 25, 25);
+        g.fillOval(250, 700, 25, 25);
+        g.fillOval(550, 700, 25, 25);
+    }
 
-        Controller controller = new Controller();
-        // add(controller.getPanel());
-        // TODO remove (debug)
-        add(new GamePanel());
-
-        MouseListener mouseListener = new ClickListener(this, controller);
-        addMouseListener(mouseListener);
-        MouseMotionListener mouseMotionListener = new DragListener(this, controller);
-        addMouseMotionListener(mouseMotionListener);
-
-        setSize(Constants.VIEW_WIDTH+22, Constants.VIEW_HEIGHT+22);
-        setVisible(true);
-
-        // controller.start();
+    public void setPressed(Boolean b) {
+        pressed = b;
     }
 
     public static void main(String[] args) {
-        MatrixEncodingApplication a = new MatrixEncodingApplication();
-        a.repaint();
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        MatrixEncodingApplication panel = new MatrixEncodingApplication();
+
+        Controller controller = new Controller(panel);
+
+        f.add(panel);
+
+        MouseListener mouseListener = new ClickListener(f, controller);
+        f.addMouseListener(mouseListener);
+        MouseMotionListener mouseMotionListener = new DragListener(f, controller);
+        f.addMouseMotionListener(mouseMotionListener);
+
+        f.setSize(Constants.VIEW_WIDTH+22, Constants.VIEW_HEIGHT+22);
+        f.setVisible(true);
+
+        controller.start();
+        f.repaint();
     }
 
 }

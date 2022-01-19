@@ -1,12 +1,8 @@
 import java.util.Random;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class StateMain implements State {
 
     Controller controller;
-
-    GamePanel gamePanel;
 
     int[] nodes;
 
@@ -16,11 +12,13 @@ public class StateMain implements State {
 
     int[][] connectionMatrix;
 
+    private MatrixEncodingApplication panel;
+
 
     @Override
-    public void start(Controller controller, GamePanel gamePanel) {
+    public void start(Controller controller, MatrixEncodingApplication panel) {
+        this.panel = panel;
         this.controller = controller;
-        this.gamePanel = gamePanel;
 
         this.nodes = new int[5];
 
@@ -29,29 +27,7 @@ public class StateMain implements State {
         // randomly generate lettering
         generateNumbering();
 
-        // draw(-1);
     }
-
-
-    // public void draw(int selected) {
-    //     // draw circles
-    //     gamePanel.drawCircles();
-
-    //     // draw line from mouse if dragging
-    //     if (clicked && selected != -1) {
-    //         gamePanel.drawMouseLine(nodes[selected], mousePosition);
-    //     }
-
-    //     // draw already connected lines
-    //     for (int i = 0; i < Array.getLength(connectionMatrix); i++) {
-    //         for (int j = 0; j < i; j++) {
-    //             if (connectionMatrix[i][j] == 1) {
-    //                 gamePanel.drawConnectionLine(i, j);
-    //             }
-    //         }
-    //     }
-    // }
-
 
     private void generateNumbering() {
         // Insert numbers in order
@@ -74,5 +50,43 @@ public class StateMain implements State {
 			nodes[randomIndexToSwap] = nodes[i];
 			nodes[i] = temp;
 		}
+    }
+
+    @Override
+    public void mousePress(int[] position, MousePressOptions m) {
+        int x = position[0];
+        int y = position[1];
+
+        if (m == MousePressOptions.Click) {
+            // Check all circles
+            if (withinConfines(x, y, 400, 150)) {
+                panel.setPressed(true);
+                // choice 1
+            }
+            else if (withinConfines(x, y, 150, 350)) {
+                panel.setPressed(true);
+                // choice 2
+            }
+            else if (withinConfines(x, y, 650, 350)) {
+                panel.setPressed(true);
+                // choice 3
+            }
+            else if (withinConfines(x, y, 250, 700)) {
+                panel.setPressed(true);
+                // choice 4
+            }
+            else if (withinConfines(x, y, 550, 700)) {
+                panel.setPressed(true);
+                // choice 5
+            }
+        }
+    }
+
+
+    private boolean withinConfines(int x, int y, int i, int j) {
+        if (x <= i+13 && x >= i-13 && y <= j+13 && y >= j-13) {
+            return true;
+        }
+        return false;
     }
 }
