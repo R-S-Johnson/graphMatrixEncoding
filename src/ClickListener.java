@@ -16,9 +16,13 @@ public class ClickListener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
+        // TODO remove (testing)
+        System.out.println("mouseClicked called");        
     }
+
+
+    
+    ///// Not needed /////
 
     @Override
     public void mousePressed(MouseEvent e) {

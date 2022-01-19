@@ -16,9 +16,12 @@ public class DragListener implements MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
+        // TODO remove (testing)
+        System.out.println("mouseDragged called");
     }
+
+
+    /// Not needed ///
 
     @Override
     public void mouseMoved(MouseEvent e) {
