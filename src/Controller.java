@@ -2,26 +2,20 @@ import java.awt.Component;
 
 public class Controller {
 
-    State[] states;
+    private State[] states;
 
-    State currentState;
-
-    GamePanel panel;
+    private State currentState;
 
 
     public Controller() {
         states = new State[3];
         states[0] = new StateMain();
         currentState = states[0];
-        panel = new GamePanel();
     }
 
-    public GamePanel getPanel() {
-        return panel;
-    }
 
     public void start() {
-        currentState.start(this, panel);
+        currentState.start(this);
     }
 
 }
