@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import java.awt.Graphics;
 import java.awt.Color;
 
+// This is a test change!
 
 public class MatrixEncodingApplication extends JPanel{
 
